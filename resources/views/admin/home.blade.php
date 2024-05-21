@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
-@section('contetn')
-
+@section('content')
+<h1>Home-admin</h1>
 @endsection
