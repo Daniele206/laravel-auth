@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Functions\Helper;
 
 class ProjectsController extends Controller
 {
@@ -14,7 +15,7 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = Project::All();
-        return view('admin.categories.projects', compact('projects'));
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -30,7 +31,18 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exist = Project::where('name', $request->name)->first();
+
+        if($exist){
+            return redirect()->route('admin.projects.index')->with('error', 'Progetto gia presente');
+        }else{
+            $new = new Project();
+            $new->name = $request->name;
+            $new->type = $request->type;
+            $new->slug = Helper::generateSlug($new->name, Project::class);
+            $new->save();
+            return redirect()->route('admin.projects.index')->with('success', 'Progetto inserito correttamente');
+        }
     }
 
     /**

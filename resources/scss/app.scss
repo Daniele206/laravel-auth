@@ -11,5 +11,13 @@
     .lh_li{
         line-height: 40px;
     }
+    .imp_reed{
+        border: none;
+        outline: none;
+        &:focus{
+            outline: 1px solid blue;
+            border-radius: 2px;
+        }
+    }
     height: calc(100vh - 80px);
 }
