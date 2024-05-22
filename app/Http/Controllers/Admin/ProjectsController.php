@@ -14,7 +14,7 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = Project::All();
-        return view('admin.home', compact('projects'));
+        return view('admin.categories.projects', compact('projects'));
     }
 
     /**

@@ -10,6 +10,11 @@
 </head>
 <body>
     @include('admin.partials.header')
-    @yield('content')
+    <div class="container-fluid cont_h">
+        <div class="row h-100">
+            @include('admin.partials.aside')
+            @yield('content')
+        </div>
+    </div>
 </body>
 </html>
