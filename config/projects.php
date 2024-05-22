@@ -1,0 +1,36 @@
+<?php
+
+return [
+    [
+        "name"=>"html-css-boolando",
+        "type"=>"html"
+    ],
+    [
+        "name"=>"html-css-boolzap",
+        "type"=>"html"
+    ],
+    [
+        "name"=>"htmlcss-hello",
+        "type"=>"html"
+    ],
+    [
+        "name"=>"js-array-carousel",
+        "type"=>"js"
+    ],
+    [
+        "name"=>"js-biglietto-treno",
+        "type"=>"js"
+    ],
+    [
+        "name"=>"js-fizz-buzz",
+        "type"=>"js"
+    ],
+    [
+        "name"=>"vue-boolzapp",
+        "type"=>"vue"
+    ],
+    [
+        "name"=>"vite-boolflix",
+        "type"=>"vite"
+    ],
+];
