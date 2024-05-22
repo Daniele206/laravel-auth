@@ -1,1 +1,12 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+.my_nav_h{
+    height: 80px;
+    .p_log-out{
+        padding: 10px 20px;
+    }
+}
+
+.cont_h{
+    height: calc(100vh - 80px);
+}
