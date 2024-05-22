@@ -2,6 +2,13 @@
 
 @section('content')
         <div class="col bg-success h-100 overflow-auto">
+            @if ($errors->any())
+                <div class="alert alert-danger ms-2 mt-3 w-50" role="alert">
+                    @foreach ($errors->all() as $error)
+                        {{$error}}
+                    @endforeach
+                </div>
+            @endif
             @if (session('error'))
                 <div class="alert alert-danger ms-2 mt-3 w-50" role="alert">
                     {{ session('error') }}
@@ -34,15 +41,31 @@
                     @foreach ($projects as $project)
                         <tr>
                             <th scope="row">{{ $project->id }}</th>
-                            <td><input class="imp_reed" type="text" value="{{ $project->name }}" name="{{ $project->name }}" id="{{ $project->name }}"></td>
-                            <td><input class="imp_reed" type="text" value="{{ $project->type }}" name="{{ $project->type }}" id="{{ $project->type }}"></td>
+                            <td>
+                                <form action="{{ route('admin.projects.update', $project) }}" method="POST" id="form-edit-{{ $project->id }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input class="imp_reed" type="text" value="{{ $project->name }}" name="name" id="{{ $project->name }}">
+                                </form>
+                            </td>
+                            <td><input class="imp_reed" type="text" value="{{ $project->type }}" name="type" id="{{ $project->type }}"></td>
                             <td class="d-flex justify-content-end">
-                                <a class="btn btn-warning mx-1" href="#"><i class="fa-solid fa-pen"></i></a>
-                                <a class="btn btn-danger mx-1" href="#"><i class="fa-solid fa-trash"></i></a>
+                                <button class="btn btn-warning mx-1" onclick="submitForm({{ $project->id }})"><i class="fa-solid fa-pen"></i></button>
+                                <form action="{{ route('admin.projects.destroy', $project) }}" method="POST" onsubmit="retun confirm('Sicuro di voler eliminare il progetto {{ $project->name }}')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger mx-1" href="#"><i class="fa-solid fa-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        <script>
+            function submitForm(id){
+                const form = document.getElementById(`form-edit-${id}`);
+                form.submit();
+            }
+        </script>
 @endsection

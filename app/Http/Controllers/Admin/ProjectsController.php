@@ -64,16 +64,34 @@ class ProjectsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $val_data = $request->validate([
+            'name' => 'required|min:2|max:20'
+        ],
+        [
+            'name.required'=> 'il campo name é obbligatorio',
+            'name.min'=> 'il campo name deve contener piú di 2 caratteri',
+            'name.max'=> 'il campo name non puó contenere piú di 20 caratteri'
+        ]);
+
+        $exist = Project::where('name', $request->name)->first();
+
+        if($exist){
+            return redirect()->route('admin.projects.index')->with('error', 'Progetto gia presente');
+        }else{
+            $val_data['slug'] = Helper::generateSlug($request->name, Project::class);
+            $project->update($val_data);
+            return redirect()->route('admin.projects.index')->with('success', 'Progetto modificato correttamente');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato correttamente');
     }
 }
