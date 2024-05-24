@@ -2,15 +2,15 @@
 
 return [
     [
-        "name"=>"html-css-boolando",
+        "name"=>"html-boolando",
         "type"=>"html"
     ],
     [
         "name"=>"html-css-boolzap",
-        "type"=>"html"
+        "type"=>"html/css"
     ],
     [
-        "name"=>"htmlcss-hello",
+        "name"=>"html-hello",
         "type"=>"html"
     ],
     [
@@ -22,8 +22,8 @@ return [
         "type"=>"js"
     ],
     [
-        "name"=>"js-fizz-buzz",
-        "type"=>"js"
+        "name"=>"vue-fizz-buzz",
+        "type"=>"vue"
     ],
     [
         "name"=>"vue-boolzapp",
@@ -32,5 +32,17 @@ return [
     [
         "name"=>"vite-boolflix",
         "type"=>"vite"
+    ],
+    [
+        "name"=>"vite-boolflix",
+        "type"=>"vite"
+    ],
+    [
+        "name"=>"php-dischi-json",
+        "type"=>"php"
+    ],
+    [
+        "name"=>"laravel-dc-comics",
+        "type"=>"laravell"
     ],
 ];

@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Functions\Helper;
 
-class ProjectsController extends Controller
+class TypesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $projects = Project::All();
-        return view('admin.projects.index', compact('projects'));
+        $types = Type::All();
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -31,16 +31,16 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $exist = Project::where('name', $request->name)->first();
+        $exist = Type::where('name', $request->name)->first();
 
         if($exist){
-            return redirect()->route('admin.projects.index')->with('error', 'Progetto gia presente');
+            return redirect()->route('admin.types.index')->with('error', 'Type gia presente');
         }else{
-            $new = new Project();
+            $new = new Type();
             $new->name = $request->name;
-            $new->slug = Helper::generateSlug($new->name, Project::class);
+            $new->slug = Helper::generateSlug($new->name, Type::class);
             $new->save();
-            return redirect()->route('admin.projects.index')->with('success', 'Progetto inserito correttamente');
+            return redirect()->route('admin.types.index')->with('success', 'Type inserito correttamente');
         }
     }
 
@@ -63,7 +63,7 @@ class ProjectsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Type $type)
     {
         $val_data = $request->validate([
             'name' => 'required|min:2|max:20'
@@ -74,23 +74,23 @@ class ProjectsController extends Controller
             'name.max'=> 'il campo name non puó contenere piú di :max caratteri'
         ]);
 
-        $exist = Project::where('name', $request->name)->first();
+        $exist = Type::where('name', $request->name)->first();
 
         if($exist){
-            return redirect()->route('admin.projects.index')->with('error', 'Progetto gia presente');
+            return redirect()->route('admin.types.index')->with('error', 'Type gia presente');
         }else{
-            $val_data['slug'] = Helper::generateSlug($request->name, Project::class);
-            $project->update($val_data);
-            return redirect()->route('admin.projects.index')->with('success', 'Progetto modificato correttamente');
+            $val_data['slug'] = Helper::generateSlug($request->name, Type::class);
+            $type->update($val_data);
+            return redirect()->route('admin.types.index')->with('success', 'Types modificato correttamente');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(Type $type)
     {
-        $project->delete();
-        return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato correttamente');
+        $type->delete();
+        return redirect()->route('admin.types.index')->with('success', 'Type eliminato correttamente');
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectsController;
+use App\Http\Controllers\Admin\TypesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'verified'])
                 ->group(function(){
                     Route::get('/', [DashboardController::class, 'index'])->name('home');
                     Route::resource('projects', ProjectsController::class);
+                    Route::resource('types', TypesController::class);
                 });
 
 Route::middleware('auth')->group(function () {

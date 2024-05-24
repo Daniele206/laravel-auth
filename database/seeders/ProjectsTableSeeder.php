@@ -19,7 +19,6 @@ class ProjectsTableSeeder extends Seeder
             $new_project = new Project();
             $new_project->name = $project['name'];
             $new_project->slug = Helper::generateSlug($new_project->name, new Project());
-            $new_project->type = $project['type'];
 
             $new_project->save();
         }

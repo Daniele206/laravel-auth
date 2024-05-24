@@ -20,8 +20,8 @@
                 </div>
             @endif
             <div class="mt-3 ms-2 w-50 p-3 bg-light shadow">
-                <h2>Aggiungi Project <i class="fa-solid fa-plus"></i></h2>
-                <form class="d-flex" action="{{ route('admin.projects.store') }}" method="POST">
+                <h2>Aggiungi Type <i class="fa-solid fa-plus"></i></h2>
+                <form class="d-flex" action="{{ route('admin.types.store') }}" method="POST">
                     @csrf
                     <input class="form-control w-25 mx-1" type="text" placeholder="Name" name="name">
                     <button type="submit" class="btn btn-outline-success mx-1">Aggiungi</button>
@@ -36,19 +36,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($projects as $project)
+                    @foreach ($types as $type)
                         <tr>
-                            <th scope="row">{{ $project->id }}</th>
+                            <th scope="row">{{ $type->id }}</th>
                             <td>
-                                <form action="{{ route('admin.projects.update', $project) }}" method="POST" id="form-edit-{{ $project->id }}">
+                                <form action="{{ route('admin.types.update', $type) }}" method="POST" id="form-edit-{{ $type->id }}">
                                     @csrf
                                     @method('PUT')
-                                    <input class="imp_reed" type="text" value="{{ $project->name }}" name="name" id="{{ $project->name }}">
+                                    <input class="imp_reed" type="text" value="{{ $type->name }}" name="name" id="{{ $type->name }}">
                                 </form>
                             </td>
                             <td class="d-flex justify-content-end">
-                                <button class="btn btn-warning mx-1" onclick="submitForm({{ $project->id }})"><i class="fa-solid fa-pen"></i></button>
-                                <form action="{{ route('admin.projects.destroy', $project) }}" method="POST" onsubmit="return confirm('Sicuro di voler eliminare il progetto {{ $project->name }}?')">
+                                <button class="btn btn-warning mx-1" onclick="submitForm({{ $type->id }})"><i class="fa-solid fa-pen"></i></button>
+                                <form action="{{ route('admin.types.destroy', $type) }}" method="POST" onsubmit="return confirm('Sicuro di voler eliminare il progetto {{ $type->name }}?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger mx-1" href="#"><i class="fa-solid fa-trash"></i></button>

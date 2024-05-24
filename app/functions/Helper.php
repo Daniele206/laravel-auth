@@ -19,4 +19,12 @@ class Helper{
 
         return $slug;
     }
+
+    public static function checkType($string, $model){
+        $type = $string;
+
+        $exists = $model::where('name', $type)->first();
+
+        return !$exists;
+    }
 }

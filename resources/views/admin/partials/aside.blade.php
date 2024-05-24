@@ -4,10 +4,10 @@
             <a class="text-decoration-none text-light fs-5" href="{{ route('admin.home') }}"><i class="fa-solid fa-house"></i> <span>Home</span></a>
         </li>
         <li class=" lh_li">
-            <a class="text-decoration-none text-light fs-5" href="{{ route('admin.projects.index') }}"><i class="fa-solid fa-list"></i> <span>Projects</span></a>
+            <a class="text-decoration-none text-light fs-5" href="{{ route('admin.projects.index') }}"><i class="fa-solid fa-boxes-stacked"></i> <span>Projects</span></a>
         </li>
         <li class=" lh_li">
-            <a class="text-decoration-none text-light fs-5" href="#"><i class="fa-solid fa-boxes-stacked"></i> <span>Tecnologies</span></a>
+            <a class="text-decoration-none text-light fs-5" href="{{ route('admin.types.index') }}"><i class="fa-solid fa-list"></i> <span>Types</span></a>
         </li>
     </ul>
 </div>
